@@ -1,0 +1,32 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<h2>Chi tiết nhân khẩu: {{ nhankhau.ho_ten }}</h2>
+
+<table class="table table-bordered w-50">
+    <tbody>
+        <tr><th>Họ tên</th><td>{{ nhankhau.ho_ten }}</td></tr>
+        <tr><th>Ngày sinh</th><td>{{ nhankhau.ngay_sinh }}</td></tr>
+        <tr><th>Giới tính</th><td>{{ nhankhau.gioi_tinh }}</td></tr>
+        <tr><th>Mã căn cước</th><td>{{ nhankhau.ma_can_cuoc }}</td></tr>
+        <tr><th>Số điện thoại</th><td>{{ nhankhau.so_dien_thoai }}</td></tr>
+        <tr><th>Trạng thái</th><td>{{ nhankhau.trang_thai }}</td></tr>
+        <tr><th>Thời gian chuyển đến</th><td>{{ nhankhau.thoi_gian_chuyen_den }}</td></tr>
+        <tr><th>Thời gian chuyển đi</th><td>{{ nhankhau.thoi_gian_chuyen_di|default:"-" }}</td></tr>
+        <tr><th>Quan hệ với chủ hộ</th><td>{{ nhankhau.quan_he_voi_chu_ho|default:"-" }}</td></tr>
+    </tbody>
+</table>
+
+{% if tam_tru_tam_vang %}
+    <h3>Thông tin tạm trú/tạm vắng</h3>
+    <div>
+        <strong>Thời gian bắt đầu:</strong> {{ tam_tru_tam_vang.thoi_gian_bat_dau }}<br>
+        <strong>Thời gian kết thúc:</strong> {{ tam_tru_tam_vang.thoi_gian_ket_thuc }}<br>
+        <strong>Lý do:</strong> {{ tam_tru_tam_vang.ly_do }}<br>
+    </div>
+{% endif %}
+
+<a href="{% url 'quanly_nhankhau' %}" class="btn btn-secondary">Quay lại</a>
+<a href="{% url 'sua_nhankhau' nhankhau.pk %}" class="btn btn-warning">Chỉnh sửa</a>
+<a href="{% url 'xoa_nhankhau' nhankhau.pk %}" class="btn btn-danger btn-sm">Xóa</a>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="sidebar">
+        
+        <div class="sidebar-menu">
+            <a href="{% url 'quanly_dashboard' %}" class="sidebar-link" title="Trang chủ">
+                <i class="fas fa-home"></i>
+                <span class="sidebar-text">Trang chủ</span>
+            </a>
+            <a href="{% url 'quanly_nhankhau' %}" class="sidebar-link" title="Nhân khẩu">
+                <i class="fas fa-users"></i>
+                <span class="sidebar-text">Nhân khẩu</span>
+            </a>
+            <a href="{% url 'quanly_hokhau' %}" class="sidebar-link" title="Hộ khẩu">
+                <i class="fas fa-address-book"></i>
+                <span class="sidebar-text">Hộ khẩu</span>
+            </a>           
+             <a href="{% url 'quanly_phuongtien' %}" class="sidebar-link" title="Phương tiện">
+                <i class="fas fa-car"></i>
+                <span class="sidebar-text">Phương tiện</span>
+            </a>
+            <a href="{% url 'quanly_nguoidung' %}" class="sidebar-link" title="Người dùng">
+                <i class="fas fa-user-cog"></i>
+                <span class="sidebar-text">Người dùng</span>
+            </a>
+            <a href="{% url 'chitiet_hoso' %}" class="sidebar-link" title="Hồ Sơ">
+                <i class="fas fa-user"></i>
+                <span class="sidebar-text">Hồ Sơ</span>
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <a href="{% url 'logout' %}" class="sidebar-link" title="Đăng xuất">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="sidebar-text">Đăng xuất</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="content">
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="page-header">
+            <h1 class="page-title">{% block page_title %}{% endblock %}</h1>
+            <div class="page-actions">
+                {% block page_actions %}{% endblock %}
+            </div>
+        </div>
+
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    {% block modal %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
+

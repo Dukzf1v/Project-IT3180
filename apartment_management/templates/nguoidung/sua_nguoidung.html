@@ -1,0 +1,40 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block title %}Chỉnh sửa người dùng{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Chỉnh sửa người dùng</h2>
+
+    <form method="POST" id="user-form">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="ho_ten" class="form-label">Họ và tên:</label>
+            <input type="text" id="ho_ten" name="ho_ten" class="form-control" value="{{ form.ho_ten.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" value="{{ form.email.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="so_dien_thoai" class="form-label">Số điện thoại:</label>
+            <input type="text" id="so_dien_thoai" name="so_dien_thoai" class="form-control" value="{{ form.so_dien_thoai.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="vai_tro" class="form-label">Vai trò:</label>
+            <select id="vai_tro" name="vai_tro" class="form-select" required>
+                <option value="Quản lý" {% if form.vai_tro.value == 'Quản lý' %}selected{% endif %}>Quản lý</option>
+                <option value="Kế toán" {% if form.vai_tro.value == 'Kế toán' %}selected{% endif %}>Kế toán</option>
+            </select>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-success">Cập nhật</button>
+            <button type="button" class="btn btn-secondary" onclick='window.location.href="{% url 'quanly_nguoidung' %}"'>Hủy</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

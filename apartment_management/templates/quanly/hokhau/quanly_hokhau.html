@@ -1,0 +1,55 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h2>Quản lý Hộ khẩu</h2>
+
+<div class="card p-3 shadow-sm rounded-3 mb-4 w-100">
+    <div class="d-flex flex-wrap gap-2 align-items-center justify-content-start">
+        <form method="get" action="{% url 'quanly_hokhau' %}" style="flex-grow: 1; max-width: 100%;">
+            <div class="input-group w-100">
+                <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Tìm kiếm...">
+                <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+            </div>
+        </form>
+
+        <a href="{% url 'them_hokhau' %}" class="btn btn-primary">Thêm hộ khẩu</a>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Số căn hộ</th>
+            <th>Tầng</th>
+            <th>Tòa nhà</th>
+            <th>Diện tích (m²)</th>
+            <th>Chủ hộ</th>
+            <th>Số thành viên</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ho in ho_khau_list %}
+        <tr>
+            <td>{{ ho.so_can_ho }}</td>
+            <td>{{ ho.tang }}</td>
+            <td>{{ ho.toa_nha }}</td>
+            <td>{{ ho.dien_tich }}</td>
+            <td>{% if ho.chu_ho %}{{ ho.chu_ho.ho_ten }}{% else %}Chưa có{% endif %}</td>
+            <td>{{ ho.tong_thanh_vien }}</td>
+            <td>{{ ho.trang_thai }}</td>
+            <td>
+                <a href="{% url 'chitiet_hokhau' ho.id %}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center">Không có hộ khẩu nào.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <form method="GET">
+        <table class="table table-bordered w-auto mx-auto">
+            <tbody>
+                <tr>
+                    <th>Họ và tên</th>
+                    <td>{{ nguoi_dung.ho_ten }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ nguoi_dung.email }}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại</th>
+                    <td>{{ nguoi_dung.so_dien_thoai }}</td>
+                </tr>
+                <tr>
+                    <th>Vai trò</th>
+                    <td>{{ nguoi_dung.vai_tro }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-center mt-4">
+            <a href="{% url 'sua_hoso' %}" class="btn btn-warning btn-lg mx-2">Chỉnh sửa thông tin</a>
+            <a href="{% url 'thaydoi_matkhau' %}" class="btn btn-primary btn-lg mx-2">Đổi mật khẩu</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

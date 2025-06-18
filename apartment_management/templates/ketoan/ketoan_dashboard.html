@@ -1,0 +1,27 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-4">Thống kê Quản lý</h2>
+
+<div class="row text-center">
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm p-3 w-100">
+            <h4 class="card-title">Hộ khẩu</h4>
+            <p class="card-text display-4">{{ total_ho_khau }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm p-3 w-100">
+            <h4 class="card-title">Nhân khẩu</h4>
+            <p class="card-text display-4">{{ total_nhan_khau }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm p-3 w-100">
+            <h4 class="card-title">Khoản đóng góp</h4>
+            <p class="card-text display-4">{{ total_dong_gop }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

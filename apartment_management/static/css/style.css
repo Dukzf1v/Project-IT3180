@@ -1,0 +1,404 @@
+/* ===== GENERAL STYLES ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #495057;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: #343a40;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* ===== SIDEBAR STYLES ===== */
+.sidebar {
+    width: 60px;
+    background-color: #343a40;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+    z-index: 100;
+    overflow: hidden;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar:hover {
+    width: 220px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar a {
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid #495057;
+    position: relative;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+.sidebar a i {
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar-text {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 0;
+}
+
+.sidebar:hover .sidebar-text {
+    opacity: 1;
+    width: auto;
+}
+
+/* ===== CONTENT STYLES ===== */
+.content {
+    margin-left: 60px;
+    padding: 25px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar:hover ~ .content {
+    margin-left: 220px;
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Nút tìm kiếm */
+.btn-outline-primary {
+    border-color: #1d3557;
+    color: #1d3557;
+    background-color: white;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+    background-color: #1d3557;
+    color: white;
+    transform: scale(1.05); /* Slightly grow the button on hover */
+}
+
+/* Nút thêm nhân khẩu */
+.btn-primary {
+    background-color: #1d3557;
+    border-color: #1d3557;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #081c32;
+    transform: scale(1.05);
+}
+
+/* Nút đăng ký tạm trú */
+.btn-warning {
+    background-color: #f4a261;
+    border-color: #f4a261;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.btn-warning:hover {
+    background-color: #e76f51;
+    transform: scale(1.05);
+}
+
+/* Nút đăng ký tạm vắng */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+/* Nút Chi tiết */
+.btn-info {
+    background-color: #1d3557;
+    color: white;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.btn-info:hover {
+    background-color: #16324f;
+    transform: scale(1.05);
+}
+
+/* ===== Card nhóm nút (nền trắng + bóng nhẹ) ===== */
+.control-panel {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ===== Input ===== */
+input[type="text"] {
+    border-radius: 8px;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        left: -200px;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar:hover {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .sidebar:hover ~ .content {
+        margin-left: 0;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}
+
+/* ===== STATS CARD STYLES ===== */
+.stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    width: 22%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s, transform 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Slight lift effect */
+}
+
+.card h2 {
+    font-size: 1.4em;
+    color: #343a40;
+}
+
+.card p {
+    font-size: 2em;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* ===== FOOTER STYLES ===== */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+footer a:hover {
+    color: #1d3557;
+    text-decoration: underline;
+}
+
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* ===== GENERAL FORM STYLES ===== */
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form .form-group {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: 600;
+    color: #495057;
+}
+
+form .form-control {
+    border-radius: 4px;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+form .form-control:focus {
+    border-color: #6c757d;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+}
+
+form button[type="submit"] {
+    padding: 12px;
+    font-size: 1.2rem;
+    background-color: #343a40;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #23272b;
+}
+
+form a.btn {
+    padding: 12px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #495057;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+form a.btn:hover {
+    background-color: #3a3f44;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+
+form p label {
+    font-weight: bold;
+    color: #343a40;
+}
+
+form p input,
+form p select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+form p input:focus,
+form p select:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+}
+
+.sidebar-link-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #343a40;
+    width: 200px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.sidebar-link-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.sidebar-link-dropdown:hover > .sidebar-link {
+    background-color: #495057;
+}
+
+/* Điều chỉnh độ rộng và padding của các card để chúng vừa vặn với màn hình */
+.card {
+    margin-bottom: 15px; /* Giảm khoảng cách giữa các card */
+    width: 100%;  /* Đảm bảo mỗi card chiếm toàn bộ chiều rộng */
+}
+
+/* Điều chỉnh các cột trong layout để khít nhau */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;  /* Thêm khoảng cách giữa các cột */
+}
+
+/* Điều chỉnh padding và margin để không có thừa không gian */
+.card-text {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Làm cho giao diện dễ đọc hơn trên các thiết bị di động */
+@media (max-width: 768px) {
+    .col-md-3 {
+        flex: 1 1 100%; /* Mỗi cột sẽ chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+        max-width: 100%;
+    }
+}

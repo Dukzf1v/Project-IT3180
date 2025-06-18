@@ -1,0 +1,34 @@
+{% extends 'quanly/quanly_base.html' %}
+{% block content %}
+<h2>Chọn nhân khẩu để đăng ký tạm vắng</h2>
+
+<form method="get" class="mb-3 d-flex">
+    <input type="text" name="q" value="{{ query }}" class="form-control me-2" placeholder="Tìm kiếm...">
+    <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Họ tên</th>
+            <th>CCCD</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for nk in nhan_khau_list %}
+        <tr>
+            <td>{{ nk.ho_ten }}</td>
+            <td>{{ nk.ma_can_cuoc }}</td>
+            <td>
+                <a href="{% url 'tamvang' nk.id %}" class="btn btn-warning btn-sm">Đăng ký tạm vắng</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="text-center">Không tìm thấy nhân khẩu phù hợp.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

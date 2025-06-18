@@ -1,0 +1,31 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Chi tiết phí sinh hoạt - Hộ khẩu: {{ ho_khau.so_can_ho }}</h2>
+
+<table class="table table-bordered table-striped table-hover text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>Tháng</th>
+            <th>Tiền điện</th>
+            <th>Tiền nước</th>
+            <th>Tiền Internet</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for detail in phi_sinh_hoat_details %}
+        <tr>
+            <td>{{ detail.thang }}</td>
+            <td>{{ detail.tien_dien|floatformat:0 }} ₫</td>
+            <td>{{ detail.tien_nuoc|floatformat:0 }} ₫</td>
+            <td>{{ detail.tien_internet|floatformat:0 }} ₫</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Không có dữ liệu phí sinh hoạt cho hộ khẩu này.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

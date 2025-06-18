@@ -1,0 +1,13 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+    <h2>Sửa Khoản Đóng Góp: {{ form.instance.ten_phi }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Cập nhật</button>
+    </form>
+
+    <a href="{% url 'thong_ke_dong_gop' %}" class="btn btn-secondary mt-3">Trở lại</a>
+{% endblock %}

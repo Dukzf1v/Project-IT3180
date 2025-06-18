@@ -1,0 +1,6 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="excel_file">Chọn file Excel:</label>
+    <input type="file" name="excel_file" id="excel_file" required>
+    <button type="submit">Upload</button>
+</form>

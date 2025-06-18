@@ -1,0 +1,42 @@
+{% extends 'quanly/quanly_base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Quản lý phương tiện</h2>
+
+<form method="get" action="{% url 'quanly_phuongtien' %}" style="flex-grow: 1; min-width: 250px; max-width: 100%;">
+    <div class="input-group w-100">
+        <input type="text" name="q" value="{{ query }}" class="form-control me-2" placeholder="Tìm theo căn hộ, biển số, tòa nhà, phương tiện...">
+        <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
+        <tr class="text-center">
+            <th>Số căn hộ</th>
+            <th>Số xe máy</th>
+            <th>Số ô tô</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ho_khau in ho_khau_list %}
+        <tr class="text-center">
+            <td>{{ ho_khau.so_can_ho }}</td>
+            <td>{{ ho_khau.so_xe_may|default:"0" }}</td>
+            <td>{{ ho_khau.so_o_to|default:"0" }}</td>
+            <td>
+                <a href="{% url 'chitiet_phuongtien' ho_khau.id %}" class="btn btn-info btn-sm">
+                    <i class="fas fa-eye"></i> 
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">Không có hộ khẩu nào.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

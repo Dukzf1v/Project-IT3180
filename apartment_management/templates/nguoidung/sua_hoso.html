@@ -1,0 +1,36 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Chỉnh sửa Hồ sơ cá nhân</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="ho_ten">Họ và tên:</label>
+            <input type="text" class="form-control" id="ho_ten" name="ho_ten" value="{{ form.ho_ten.value }}" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="so_dien_thoai">Số điện thoại:</label>
+            <input type="text" class="form-control" id="so_dien_thoai" name="so_dien_thoai" value="{{ form.so_dien_thoai.value }}" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="vai_tro">Vai trò:</label>
+            <select class="form-control" id="vai_tro" name="vai_tro" required>
+                <option value="Quản lý" {% if form.vai_tro.value == 'Quản lý' %}selected{% endif %}>Quản lý</option>
+                <option value="Kế toán" {% if form.vai_tro.value == 'Kế toán' %}selected{% endif %}>Kế toán</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success btn-lg mt-4 w-100">Lưu thay đổi</button>
+            <a href="{% url 'chitiet_hoso' %}" class="btn btn-secondary btn-lg ms-2 mt-4 w-100">Hủy</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

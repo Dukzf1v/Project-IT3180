@@ -1,0 +1,24 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<h2>Nhập nhân khẩu vào hộ khẩu: {{ ho.so_can_ho }} - Tòa nhà {{ ho.toa_nha }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="nhan_khau_ids" class="form-label">Chọn nhân khẩu để chuyển về hộ:</label>
+        <select id="nhan_khau_ids" name="nhan_khau_ids" class="form-select" multiple size="10" required>
+            {% for nk in nhan_khau_khac %}
+            <option value="{{ nk.id }}">{{ nk.ho_ten }} ({{ nk.ma_can_cuoc }}) - Hộ: {{ nk.ho_khau.so_can_ho }}</option>
+            {% empty %}
+            <option disabled>Không có nhân khẩu nào để chuyển</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <button type="button" class="btn btn-secondary" onclick='window.location.href="{% url 'chitiet_hokhau' ho.id %}"'>Hủy</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Thống kê Khoản Đóng Góp</h2>
+
+<form method="GET" class="d-flex align-items-center mb-3" style="gap: 10px;min-width: 250px; max-width: 100%;">
+    <input type="text" name="q" class="form-control" value="{{ query }}" placeholder="Tìm kiếm theo tên khoản đóng góp...">
+    <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+</form>
+
+<a href="{% url 'them_dong_gop' %}" class="btn btn-success mb-3">Thêm khoản đóng góp</a>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Tên khoản đóng góp</th>
+            <th>Số tiền gợi ý</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Chi tiết</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dong_gop in dong_gop_records %}
+        <tr>
+            <td>{{ dong_gop.ten_phi }}</td>
+            <td>{{ dong_gop.so_tien_goi_y|floatformat:0 }} ₫</td>
+            <td>{{ dong_gop.ngay_bat_dau }}</td>
+            <td>{{ dong_gop.ngay_ket_thuc }}</td>
+            <td>{{ dong_gop.noi_dung }}</td>  
+            <td>
+                <a href="{% url 'chi_tiet_dong_gop' ten_phi=dong_gop.ten_phi %}" class="btn btn-info btn-sm">Chi tiết</a>
+                <a href="{% url 'sua_dong_gop' id=dong_gop.ten_phi %}" class="btn btn-warning btn-sm">Sửa</a>
+                <a href="{% url 'xoa_dong_gop' id=dong_gop.ten_phi %}" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">Không có dữ liệu khoản đóng góp</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

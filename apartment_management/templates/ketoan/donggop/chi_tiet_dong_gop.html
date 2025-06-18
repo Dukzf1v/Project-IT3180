@@ -1,0 +1,39 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Chi Tiết Khoản Đóng Góp: {{ dong_gop.ten_phi }}</h2>
+
+<h3>Các hộ gia đình đã đóng góp</h3>
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Số căn hộ</th>
+            <th>Ngày đóng</th>
+            <th>Số tiền đóng</th>
+            <th>Ghi chú</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dong_gop_detail in dong_gop_details %}
+        <tr>
+            <td>{{ dong_gop_detail.ho_khau.so_can_ho }}</td>
+            <td>{{ dong_gop_detail.ngay_dong }}</td>
+            <td>{{ dong_gop_detail.so_tien_dong|floatformat:0 }} ₫</td>
+            <td>{{ dong_gop_detail.ghi_chu }}</td>
+            <td>
+                <a href="{% url 'sua_dong_gop_ho' id=dong_gop_detail.id %}" class="btn btn-warning btn-sm">Sửa</a>
+                <a href="{% url 'xoa_dong_gop_ho' id=dong_gop_detail.id %}" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Không có dữ liệu đóng góp</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'them_dong_gop_ho' ten_phi=dong_gop.ten_phi %}" class="btn btn-success mb-3">Thêm Đóng Góp</a>
+
+{% endblock %}

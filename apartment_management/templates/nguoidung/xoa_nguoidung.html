@@ -1,0 +1,23 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block title %}Xóa Người Dùng{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-danger">Xóa Người Dùng</h2>
+    <div class="alert alert-warning" role="alert">
+        Bạn có chắc chắn muốn xóa người dùng <strong>{{ user.username }}</strong> không?
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-success">Xóa</button>
+            <button type="button" class="btn btn-secondary" onclick='window.location.href="{% url 'quanly_nguoidung' %}"'>Hủy</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+

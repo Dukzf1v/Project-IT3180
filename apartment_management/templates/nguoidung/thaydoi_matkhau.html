@@ -1,0 +1,30 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Thay đổi mật khẩu</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="old_password">Mật khẩu cũ:</label>
+            {{ form.old_password }}
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="new_password1">Mật khẩu mới:</label>
+            {{ form.new_password1 }}
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="new_password2">Xác nhận mật khẩu mới:</label>
+            {{ form.new_password2 }}
+        </div>
+        
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success btn-lg mt-4">Lưu thay đổi</button>
+            <a href="{% url 'chitiet_hoso' %}" class="btn btn-secondary btn-lg ms-2 mt-4">Hủy</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Cập nhật phí sinh hoạt từ file Excel</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="excel_file">Chọn file Excel để tải lên (Số căn hộ, Tiền điện, Tiền nước, Tiền Internet):</label>
+    <input type="file" name="excel_file" accept=".xlsx" class="form-control mb-3">
+    <label for="thang">Chọn tháng:</label>
+    <input type="number" name="thang" class="form-control" min="1" max="12">
+    <button type="submit" class="btn btn-success">Tải lên</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<h2>Xóa nhân khẩu: {{ nhan_khau.ho_ten }}</h2>
+<p>Bạn có chắc chắn muốn xóa nhân khẩu này không?</p>
+
+<div class="d-flex gap-2 mt-4">
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <button type="button" class="btn btn-secondary" onclick='window.location.href="{% url "quanly_nhankhau" %}"'>Hủy</button>
+</div>
+{% endblock %}

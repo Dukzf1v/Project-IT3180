@@ -1,0 +1,21 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<h2 class="mb-4 text-danger">Xóa phương tiện</h2>
+
+<div class="alert alert-warning" role="alert">
+    Bạn có chắc chắn muốn xóa phương tiện:
+    <strong>{{ phuong_tien.loai_phuong_tien }} - {{ phuong_tien.bien_so }}</strong>
+    của hộ khẩu <strong>{{ ho_khau.so_can_ho }}</strong> không?
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+        <i class="fas fa-trash"></i> Xóa
+    </button>
+    <a href="{% url 'chitiet_phuongtien' phuong_tien.ho_khau.id %}" class="btn btn-secondary ms-2">
+        <i class="fas fa-arrow-left"></i> Hủy
+    </a>
+</form>
+{% endblock %}

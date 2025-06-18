@@ -1,0 +1,18 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+    <h2>Xóa Khoản Đóng Góp: {{ dong_gop.ten_phi }}</h2>
+
+    <p>Bạn có chắc chắn muốn xóa khoản đóng góp này không?</p>
+    <p><strong>{{ dong_gop.ten_phi }}</strong></p>
+    <p><strong>Số tiền gợi ý:</strong> {{ dong_gop.so_tien_goi_y }} ₫</p>
+    <p><strong>Nội dung:</strong> {{ dong_gop.noi_dung }}</p>
+    <p><strong>Ngày bắt đầu:</strong> {{ dong_gop.ngay_bat_dau }}</p>
+    <p><strong>Ngày kết thúc:</strong> {{ dong_gop.ngay_ket_thuc }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a href="{% url 'thong_ke_dong_gop' %}" class="btn btn-secondary">Hủy</a>
+    </form>
+{% endblock %}

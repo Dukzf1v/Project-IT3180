@@ -1,0 +1,46 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block title %}Thêm Người dùng{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Thêm người dùng mới</h2>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="ho_ten" class="form-label">Họ và tên</label>
+            <input type="text" class="form-control" id="ho_ten" name="ho_ten" required>
+            <div class="invalid-feedback">Vui lòng nhập họ tên</div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            <div class="invalid-feedback">Vui lòng nhập email hợp lệ</div>
+        </div>
+        <div class="mb-3">
+            <label for="ten_dang_nhap" class="form-label">Tên đăng nhập</label>
+            <input type="text" class="form-control" id="ten_dang_nhap" name="ten_dang_nhap" required>
+            <div class="invalid-feedback">Vui lòng nhập tên đăng nhập</div>
+        </div>
+        <div class="mb-3">
+            <label for="so_dien_thoai" class="form-label">Số điện thoại</label>
+            <input type="text" class="form-control" id="so_dien_thoai" name="so_dien_thoai" required pattern="[0-9]{10,15}">
+            <div class="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ (10-15 số)</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Vai trò</label>
+            <select class="form-select" name="vai_tro" required>
+                <option value="">Chọn vai trò</option>
+                <option value="Quản lý">Quản lý</option>
+                <option value="Kế toán">Kế toán</option>
+            </select>
+            <div class="invalid-feedback">Vui lòng chọn vai trò</div>
+        </div>
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-success">Cập nhật</button>
+            <button type="button" class="btn btn-secondary" onclick='window.location.href="{% url 'quanly_nguoidung' %}"'>Hủy</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

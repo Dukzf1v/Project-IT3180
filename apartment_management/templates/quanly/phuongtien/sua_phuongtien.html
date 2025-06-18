@@ -1,0 +1,43 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block page_title %}Sửa phương tiện{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Sửa phương tiện của hộ khẩu <strong>{{ phuong_tien.ho_khau.so_can_ho }}</strong></h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+        <label for="id_loai_phuong_tien" class="form-label">Loại phương tiện</label>
+        {{ form.loai_phuong_tien.errors }}
+        {{ form.loai_phuong_tien }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_bien_so" class="form-label">Biển số</label>
+        {{ form.bien_so.errors }}
+        {{ form.bien_so }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_mau" class="form-label">Màu</label>
+        {{ form.mau.errors }}
+        {{ form.mau }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_mo_ta" class="form-label">Mô tả</label>
+        {{ form.mo_ta.errors }}
+        {{ form.mo_ta }}
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        <i class="fas fa-save"></i> Lưu thay đổi
+    </button>
+    <a href="{% url 'chitiet_phuongtien' phuong_tien.ho_khau.id %}" class="btn btn-secondary ms-2">
+        <i class="fas fa-arrow-left"></i> Hủy
+    </a>
+</form>
+{% endblock %}

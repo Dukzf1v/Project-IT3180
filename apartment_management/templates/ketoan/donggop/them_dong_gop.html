@@ -1,0 +1,12 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Thêm Khoản Đóng Góp</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    <button type="submit" class="btn btn-success">Thêm khoản đóng góp</button>
+</form>
+
+{% endblock %}

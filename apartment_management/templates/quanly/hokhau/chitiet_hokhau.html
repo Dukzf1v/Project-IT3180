@@ -1,0 +1,61 @@
+{% extends 'quanly/quanly_base.html' %}
+{% load static %}
+{% block content %}
+<h2>Chi tiết hộ khẩu: {{ ho.so_can_ho }}</h2>
+
+<div class="mb-4">
+    <p><strong>Tầng:</strong> {{ ho.tang }}</p>
+    <p><strong>Tòa nhà:</strong> {{ ho.toa_nha }}</p>
+    <p><strong>Ngày lập:</strong> {{ ho.ngay_lap }}</p>
+    <p><strong>Ngày chuyển đi:</strong> {{ ho.ngay_chuyen_di|default:"-" }}</p>
+    <p><strong>Diện tích:</strong> {{ ho.dien_tich|default:"-" }} m²</p>
+    <p><strong>Số xe máy:</strong> {{ ho.so_xe_may|default:"-" }}</p>
+    <p><strong>Số ô tô:</strong> {{ ho.so_o_to|default:"-" }}</p>
+    <p><strong>Chủ hộ:</strong> {% if ho.chu_ho %}{{ ho.chu_ho.ho_ten }}{% else %}Chưa có{% endif %}</p>
+    <p><strong>Trạng thái:</strong> {{ ho.trang_thai }}</p>
+</div>
+
+<h3>Danh sách thành viên</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Mã căn cước</th>
+            <th>Số điện thoại</th>
+            <th>Quan hệ với chủ hộ</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tv in thanh_vien_list %}
+        <tr>
+            <td>{{ tv.ho_ten }}</td>
+            <td>{{ tv.ngay_sinh }}</td>
+            <td>{{ tv.gioi_tinh }}</td>
+            <td>{{ tv.ma_can_cuoc }}</td>
+            <td>{{ tv.so_dien_thoai }}</td>
+            <td>{{ tv.quan_he_voi_chu_ho }}</td>
+            <td>{{ tv.trang_thai }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">Không có thành viên nào.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'quanly_hokhau' %}" class="btn btn-info">Quay lại</a>
+<a href="{% url 'sua_hokhau' ho.id %}" class="btn btn-warning btn-sm">Sửa</a>
+<a href="{% url 'chuyen_hokhau' ho.id %}" class="btn btn-secondary btn-sm">Chuyển hộ</a>
+<a href="{% url 'tach_hokhau' ho.id %}" class="btn btn-primary btn-sm">Tách hộ</a>
+<a href="{% url 'nhap_hokhau' ho.id %}" class="btn btn-success btn-sm">Nhập nhân khẩu</a>
+
+<a href="#" class="btn btn-danger btn-sm"
+    onclick="if(confirm('Bạn chắc chắn muốn xóa?')) { document.getElementById('xoa-form-{{ ho.id }}').submit(); }">Xóa</a>
+<form id="xoa-form-{{ ho.id }}" action="{% url 'xoa_hokhau' ho.id %}" method="post" style="display: none;">
+    {% csrf_token %}
+</form>
+{% endblock %}

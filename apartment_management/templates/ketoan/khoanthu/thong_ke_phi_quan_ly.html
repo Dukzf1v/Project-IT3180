@@ -1,0 +1,38 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Thống Kê Phí Quản Lý</h2>
+
+<form method="GET" class="d-flex align-items-center mb-3" style="gap: 10px;min-width: 250px; max-width: 100%;">
+    <input type="text" name="q" class="form-control" value="{{ query }}" placeholder="Tìm kiếm hộ khẩu...">
+    <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+</form>
+
+<div class="table-container">
+    <table class="table table-bordered table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Số căn hộ</th>
+                {% for month in months %}
+                    <th>Tháng {{ month }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for ho_khau_id, data in fee_totals.items %}
+                <tr>
+                    <td>{{ data.so_can_ho }}</td>
+                    {% for so_tien in data.monthly_fees %}
+                        <td>{{ so_tien|floatformat:0 }} ₫</td>
+                    {% endfor %}
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="14">Không có dữ liệu khoản thu</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

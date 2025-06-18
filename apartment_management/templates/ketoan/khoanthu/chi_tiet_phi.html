@@ -1,0 +1,38 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Chi Tiết Khoản Thu - Hộ khẩu: {{ ho_khau.so_can_ho }}</h2>
+
+<form method="POST" action="{% url 'xac_nhan_thanh_toan' ho_khau_id=ho_khau.id %}">
+    {% csrf_token %}
+    <label for="thang">Chọn tháng thanh toán:</label>
+    <select name="thang" id="thang" required>
+        {% for month in months %}
+            <option value="{{ month }}">Tháng {{ month }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-success btn-sm">Xác nhận thanh toán</button>
+</form>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Loại Phí</th>
+            {% for month in months %}
+                <th>Tháng {{ month }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for loai, phi_data in chi_tiet_phi.items %}
+            <tr>
+                <td>{{ loai }}</td>
+                {% for tong in phi_data %}
+                    <td>{{ tong|floatformat:0 }} ₫</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Sửa Đóng Góp Của Hộ Gia Đình</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning">Cập nhật</button>
+</form>
+<a href="{% url 'chi_tiet_dong_gop' %}" class="btn btn-secondary mt-3">Trở lại</a>
+{% endblock %}

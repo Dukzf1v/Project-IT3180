@@ -1,0 +1,41 @@
+{% extends 'quanly/quanly_base.html' %}
+
+{% block content %}
+<h2>Thêm Hộ khẩu mới</h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+        <label for="id_so_can_ho" class="form-label">Số căn hộ</label>
+        {{ form.so_can_ho.errors }}
+        {{ form.so_can_ho }}
+    </div>
+    <div class="mb-3">
+        <label for="id_tang" class="form-label">Tầng</label>
+        {{ form.tang.errors }}
+        {{ form.tang }}
+    </div>
+    <div class="mb-3">
+        <label for="id_toa_nha" class="form-label">Tòa nhà</label>
+        {{ form.toa_nha.errors }}
+        {{ form.toa_nha }}
+    </div>
+    <div class="mb-3">
+        <label for="id_ngay_lap" class="form-label">Ngày lập</label>
+        {{ form.ngay_lap.errors }}
+        {{ form.ngay_lap }}
+    </div>
+    <div class="mb-3">
+        <label for="id_dien_tich" class="form-label">Diện tích</label>
+        {{ form.dien_tich.errors }}
+        {{ form.dien_tich }}
+    </div>
+
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <button type="button" class="btn btn-secondary" onclick='window.location.href="{% url 'quanly_hokhau' %}"'>Hủy</button>
+    </div>
+</form>
+{% endblock %}

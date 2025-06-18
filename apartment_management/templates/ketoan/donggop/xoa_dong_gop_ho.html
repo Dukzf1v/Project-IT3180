@@ -1,0 +1,13 @@
+{% extends 'ketoan/ketoan_base.html' %}
+
+{% block content %}
+<h2>Xóa Đóng Góp Của Hộ Gia Đình</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <p>Bạn có chắc chắn muốn xóa đóng góp của hộ gia đình này không?</p>
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="{% url 'chi_tiet_dong_gop' ten_phi=dong_gop.phi.ten_phi %}" class="btn btn-secondary">Hủy</a>
+</form>
+
+{% endblock %}
